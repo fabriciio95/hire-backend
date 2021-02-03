@@ -2,13 +2,9 @@ package com.hire.domain.model;
 
 
 
-import java.util.List;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.EqualsAndHashCode;
@@ -23,8 +19,7 @@ public class Profissional {
 	
 	@Id
 	@EqualsAndHashCode.Include
-	@Column(name = "id")
-	private Integer id;
+	private Long id;
 
 	@OneToOne
 	@MapsId
@@ -34,7 +29,5 @@ public class Profissional {
 	private String descricao;
 	private String valorHora;
 	private String telefone;
-	
-	@OneToMany(mappedBy = "profissional")
-	private List<Avaliacao> avaliacoes;
+
 }

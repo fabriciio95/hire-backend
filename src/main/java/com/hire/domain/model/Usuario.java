@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -31,6 +30,4 @@ public class Usuario {
 	private String nome;
 	private String nomeFoto;
 	private transient MultipartFile arquivoFoto;
-	@OneToOne(mappedBy = "usuario")
-	private Profissional profissional;
 }
