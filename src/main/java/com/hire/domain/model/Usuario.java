@@ -27,7 +27,7 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank(message = "Usuário não pode estar em branco.")
-	@Size(max = 10, message = "Usuário pode ter no máximo 10 caracteres")
+	@Size(max = 10, message = "Usuário pode ter no máximo 10 caracteres.")
 	@Column(unique = true)
 	private String usuario;
 	@NotBlank(message = "Senha não pode estar em branco.")

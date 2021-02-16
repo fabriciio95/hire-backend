@@ -19,14 +19,28 @@ import lombok.Setter;
 public class UsuarioProfissionalApi {
 	
 	public enum EuQuero {
-		SER_CONTRATADO, CONTRATAR, AMBOS;
+		SER_CONTRATADO("Ser Contratado"),
+		CONTRATAR("Contratar"),
+		AMBOS("Ambos");
+		
+		@Getter
+		private String euQuero;
+		
+		private EuQuero(String euQuero) {
+			this.euQuero = euQuero;
+		}
+		
+		public EuQuero getEuQuero(String euQuero) {
+			return EuQuero.valueOf(euQuero);
+		}
+		
 	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank(message = "Usuário não pode estar em branco.")
-	@Size(max = 10, message = "Usuário pode ter no máximo 10 caracteres")
+	@Size(max = 10, message = "Usuário pode ter no máximo 10 caracteres.")
 	private String usuario;
 	@NotBlank(message = "Senha não pode estar em branco.")
 	private String senha;

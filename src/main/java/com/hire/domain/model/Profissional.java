@@ -2,6 +2,7 @@ package com.hire.domain.model;
 
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.MapsId;
@@ -33,6 +34,7 @@ public class Profissional {
 	@NotBlank(message = "E-mail não pode estar em branco.")
 	@Size(message = "E-mail não pode ter mais do que 30 caracteres.", max = 30)
 	@Email
+	@Column(unique = true)
 	private String email;
 	@NotBlank(message = "Descrição não pode estar em branco.")
 	@Size(max = 55, message = "Descrição pode ter no máximo 55 caracteres.")

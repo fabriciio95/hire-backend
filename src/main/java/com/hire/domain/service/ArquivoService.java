@@ -58,13 +58,14 @@ public class ArquivoService {
 	
 	public String getImage(Path path, String formato) {
 		byte[] file;
+		String fileBase64;
 		try {
 			file = Files.readAllBytes(path);
+		    fileBase64 = new String(Base64.encodeBase64(file), "UTF-8");
 		} catch (IOException e) {
 			throw new ArquivoException(e.getMessage());
 		}
-		byte[] fileBase64 = Base64.encodeBase64(file);
-		return String.format("data:image/%s;base64,%s", formato, DatatypeConverter.printBase64Binary(fileBase64));
+		return String.format("data:image/%s;base64,%s", formato, fileBase64);
 	}
 	
 	public void salvarImagem(Usuario usuario) { 

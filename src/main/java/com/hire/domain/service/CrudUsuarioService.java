@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hire.api.model.UsuarioProfissionalApi;
 import com.hire.api.model.UsuarioProfissionalApi.EuQuero;
+import com.hire.domain.exception.ArquivoException;
 import com.hire.domain.exception.UsuarioJaCadastradoException;
 import com.hire.domain.model.Profissional;
 import com.hire.domain.model.Usuario;
@@ -26,10 +27,18 @@ public class CrudUsuarioService {
 	private ArquivoService arquivoService;
 	
 	@Transactional(rollbackFor = Exception.class)
-	public UsuarioProfissionalApi salvar(UsuarioProfissionalApi usuarioApi) { 
+	public UsuarioProfissionalApi salvar(UsuarioProfissionalApi usuarioApi) {
+		if(usuarioApi.getFotoBase64().isBlank()) {
+			throw new ArquivoException("É obrigatório armazenar uma foto para identificação");
+		}
+		
 		Usuario usuarioExistente = usuarioRepository.findByUsuario(usuarioApi.getUsuario());
 		if(usuarioExistente != null && !usuarioExistente.getId().equals(usuarioApi.getId())) {
 			throw new UsuarioJaCadastradoException("Usuário já cadastrado");
+		}
+		Profissional profissionalExistente = profissionalRepository.findByEmail(usuarioApi.getEmail());
+		if(profissionalExistente != null && !profissionalExistente.getId().equals(usuarioApi.getId())) {
+			throw new UsuarioJaCadastradoException("E-mail já cadastrado");
 		}
 		
 		Usuario usuario = usuarioRepository.save(UsuarioUtils.fromUsuarioAPIForUsuario(usuarioApi));
@@ -49,7 +58,10 @@ public class CrudUsuarioService {
 			profissional.setEmail(usuarioApi.getEmail());
 			profissional.setEndereco(usuarioApi.getEndereco());
 			profissional.setTelefone(usuarioApi.getTelefone());
-			profissional.setValorHora(usuarioApi.getValorHora());
+			if(!usuarioApi.getValorHora().toUpperCase().contains("/H")) {
+				usuarioApi.setValorHora(usuarioApi.getValorHora().concat("/h"));
+			}
+			profissional.setValorHora(usuarioApi.getValorHora().toLowerCase());
 			
 			profissional = profissionalRepository.save(profissional);
 		}
