@@ -1,10 +1,9 @@
 package com.hire.domain.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.hire.api.model.UsuarioProfissionalApi;
+import com.hire.api.model.UsuarioProfissionalApi.EuQuero;
 import com.hire.domain.model.Profissional;
 import com.hire.domain.model.Usuario;
 import com.hire.domain.repository.UsuarioRepository;
@@ -19,8 +18,7 @@ public class UsuarioUtils {
 		usuario.setId(usuarioApi.getId());
 		usuario.setNome(usuarioApi.getNome());
 		usuario.setUsuario(usuarioApi.getUsuario());
-		PasswordEncoder enconder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		usuario.setSenha(enconder.encode(usuarioApi.getSenha()));
+		usuario.setSenha(usuarioApi.getSenha());
 		usuario.setFotoBase64(usuarioApi.getFotoBase64());
 		return usuario;
 	}
@@ -42,14 +40,18 @@ public class UsuarioUtils {
 		usuarioApi.setId(usuario.getId());
 		usuarioApi.setNome(usuario.getNome());
 		usuarioApi.setUsuario(usuario.getUsuario());
-		PasswordEncoder enconder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		usuarioApi.setSenha(enconder.encode(usuario.getSenha()));
+		usuarioApi.setSenha(usuario.getSenha());
 		usuarioApi.setFotoBase64(usuario.getFotoBase64());
 		usuarioApi.setDescricao(profissional.getDescricao());
 		usuarioApi.setEmail(profissional.getEmail());
 		usuarioApi.setEndereco(profissional.getEndereco());
 		usuarioApi.setTelefone(profissional.getTelefone());
 		usuarioApi.setValorHora(profissional.getValorHora());
+		if(usuarioApi.getDescricao() != null) {
+			usuarioApi.setEuQuero(EuQuero.AMBOS);
+		} else {
+			usuarioApi.setEuQuero(EuQuero.CONTRATAR);
+		}
 		return usuarioApi;
 	}
 	
@@ -59,8 +61,7 @@ public class UsuarioUtils {
 		usuarioApi.setNome(usuario.getNome());
 		usuarioApi.setUsuario(usuario.getUsuario());
 		usuarioApi.setFotoBase64(usuario.getFotoBase64());
-		PasswordEncoder enconder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-		usuarioApi.setSenha(enconder.encode(usuario.getSenha()));
+		usuarioApi.setSenha(usuario.getSenha());
 		return usuarioApi;
 	}
 

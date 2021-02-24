@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -30,7 +33,6 @@ public class Usuario {
 	@Size(max = 10, message = "Usuário pode ter no máximo 10 caracteres.")
 	@Column(unique = true)
 	private String usuario;
-	@NotBlank(message = "Senha não pode estar em branco.")
 	private String senha;
 	@NotBlank(message = "Nome não pode estar em branco.")
 	@Size(max = 25, message = "Nome só pode ter até 25 caracteres.")
@@ -49,5 +51,11 @@ public class Usuario {
 	    String parte1Nome = partesNome[0];
 	    String parte2Nome = partesNome[1];
 	    return String.format("%s-miniatura.%s", parte1Nome, parte2Nome);
+	}
+	
+	public void criptografarSenha() {
+		PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
+		String senhaCriptograda = encoder.encode(senha);
+		setSenha(senhaCriptograda);
 	}
 }

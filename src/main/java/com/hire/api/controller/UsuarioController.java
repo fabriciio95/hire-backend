@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hire.api.model.UsuarioProfissionalApi;
 import com.hire.api.model.UsuarioProfissionalApi.EuQuero;
+import com.hire.domain.exception.NotBlankException;
 import com.hire.domain.model.Usuario;
 import com.hire.domain.repository.UsuarioRepository;
 import com.hire.domain.service.CrudUsuarioService;
@@ -33,6 +34,9 @@ public class UsuarioController {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Usuario adicionarUsuario(@RequestBody @Valid Usuario usuario) {
+		if(usuario.getSenha() == null || usuario.getSenha().isBlank()) {
+			throw new NotBlankException("A senha não pode estar em branco.");
+		}
 		UsuarioProfissionalApi usuarioApi = UsuarioUtils.fromUsuarioForUsuarioProfissionalApi(usuario);
 		usuarioApi.setEuQuero(EuQuero.CONTRATAR);
 		Usuario usuarioSalvo = UsuarioUtils.fromUsuarioAPIForUsuario(crudUsuarioService.salvar(usuarioApi));

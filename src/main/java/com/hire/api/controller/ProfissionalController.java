@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hire.api.model.ProfissionalApi;
 import com.hire.api.model.UsuarioProfissionalApi;
+import com.hire.domain.exception.NotBlankException;
 import com.hire.domain.model.Usuario;
 import com.hire.domain.repository.UsuarioRepository;
 import com.hire.domain.service.ArquivoService;
@@ -48,6 +49,9 @@ public class ProfissionalController {
 	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public UsuarioProfissionalApi adicionarProfissional(@RequestBody @Valid UsuarioProfissionalApi usuarioApi) {
+		if(usuarioApi.getSenha() == null || usuarioApi.getSenha().isBlank()) {
+			throw new NotBlankException("A senha não pode estar em branco.");
+		}
 		UsuarioProfissionalApi usuario = crudUsuarioService.salvar(usuarioApi);
 		usuario.setSenha(null);
 		usuario.setFotoBase64(null);

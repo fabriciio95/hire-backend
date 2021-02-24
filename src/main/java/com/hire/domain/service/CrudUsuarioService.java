@@ -28,7 +28,7 @@ public class CrudUsuarioService {
 	
 	@Transactional(rollbackFor = Exception.class)
 	public UsuarioProfissionalApi salvar(UsuarioProfissionalApi usuarioApi) {
-		if(usuarioApi.getFotoBase64().isBlank()) {
+		if(usuarioApi.getId() == null && usuarioApi.getFotoBase64().isBlank()) {
 			throw new ArquivoException("É obrigatório armazenar uma foto para identificação");
 		}
 		
@@ -41,9 +41,27 @@ public class CrudUsuarioService {
 			throw new UsuarioJaCadastradoException("E-mail já cadastrado");
 		}
 		
+		boolean isEnconderPassword = true;
+		if(usuarioApi.getId() != null  && usuarioApi.getSenha() == null ) {
+			Usuario usuarioBD = usuarioRepository.findById(usuarioApi.getId()).orElseThrow();
+			usuarioApi.setSenha(usuarioBD.getSenha());
+			isEnconderPassword = false;
+		}
+		
 		Usuario usuario = usuarioRepository.save(UsuarioUtils.fromUsuarioAPIForUsuario(usuarioApi));
-		usuario.setFotoBase64(usuarioApi.getFotoBase64());
-		arquivoService.salvarImagem(usuario);
+		
+		if(usuarioApi.getId() == null || (usuarioApi.getId() != null && !usuarioApi.getSenha().isBlank() && isEnconderPassword)) {
+			usuario.criptografarSenha();
+		}
+		
+		if(usuarioApi.getId() != null) {
+			usuario.setNomeFoto(String.format("%d.png", usuarioApi.getId()));
+		}
+		
+		if(usuarioApi.getFotoBase64() != null && !usuarioApi.getFotoBase64().isBlank()) {
+			usuario.setFotoBase64(usuarioApi.getFotoBase64());
+			arquivoService.salvarImagem(usuario);
+		}
 		
 		Profissional profissional = new Profissional();
 		if(!usuarioApi.getEuQuero().equals(EuQuero.CONTRATAR)) {
@@ -64,6 +82,8 @@ public class CrudUsuarioService {
 			profissional.setValorHora(usuarioApi.getValorHora().toLowerCase());
 			
 			profissional = profissionalRepository.save(profissional);
+		} else if(usuarioApi.getEuQuero().equals(EuQuero.CONTRATAR) && profissionalRepository.existsById(usuario.getId())) {
+			profissionalRepository.deleteById(usuario.getId());
 		}
 		
 		return UsuarioUtils.fromUsuarioAndProfissionalForUsuarioApi(usuario, profissional);

@@ -42,7 +42,6 @@ public class UsuarioProfissionalApi {
 	@NotBlank(message = "Usuário não pode estar em branco.")
 	@Size(max = 10, message = "Usuário pode ter no máximo 10 caracteres.")
 	private String usuario;
-	@NotBlank(message = "Senha não pode estar em branco.")
 	private String senha;
 	@NotBlank(message = "Nome não pode estar em branco.")
 	@Size(max = 25, message = "Nome só pode ter até 25 caracteres.")
@@ -65,8 +64,6 @@ public class UsuarioProfissionalApi {
 	@Size(max = 15, message = "Telefone pode ter no máximo 15 caracteres.")
 	private String telefone;
 	private EuQuero euQuero;
-	
-	@NotBlank
 	private String fotoBase64;
 
 }
