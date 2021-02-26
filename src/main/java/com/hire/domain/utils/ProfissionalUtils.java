@@ -23,7 +23,7 @@ public class ProfissionalUtils {
 		avaliacaoApi.setId(avaliacao.getId());
 		avaliacaoApi.setComentario(avaliacao.getComentario());
 		avaliacaoApi.setIdAutor(avaliacao.getAutor().getId());
-		avaliacaoApi.setNomeAutor(avaliacao.getAutor().getNome());
+		avaliacaoApi.setNomeAutor(avaliacao.getAutor().getNome().split(" ")[0]);
 		avaliacaoApi.setIdProfissional(avaliacao.getProfissional().getId());
 		avaliacaoApi.setFotoAutorBase64(avaliacao.getFotoAutorBase64());
 		return avaliacaoApi;

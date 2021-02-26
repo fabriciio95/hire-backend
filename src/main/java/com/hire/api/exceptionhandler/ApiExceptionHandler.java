@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import com.hire.api.exceptionhandler.Problema.Campo;
 import com.hire.domain.exception.ArquivoException;
+import com.hire.domain.exception.AvaliacaoException;
 import com.hire.domain.exception.NotBlankException;
 import com.hire.domain.exception.UsuarioJaCadastradoException;
 
@@ -53,6 +54,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(NotBlankException.class)
 	public ResponseEntity<Object> HandleNotBlankException(NotBlankException ex, WebRequest request) {
+		var status = HttpStatus.BAD_REQUEST;
+		var problema = criarProblema(status.value(), ex.getMessage());
+		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
+	}
+	
+	@ExceptionHandler(AvaliacaoException.class)
+	public ResponseEntity<Object> AvaliacaoException(AvaliacaoException ex, WebRequest request) {
 		var status = HttpStatus.BAD_REQUEST;
 		var problema = criarProblema(status.value(), ex.getMessage());
 		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);

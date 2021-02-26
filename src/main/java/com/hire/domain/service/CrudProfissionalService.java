@@ -62,6 +62,7 @@ public class CrudProfissionalService {
 		usuario.setId(profissional.getId());
 		usuario.setFotoBase64(arquivoService.getImage(Paths.get(dirImages, usuarioExistente.getNomeFoto()), "png"));
 		List<Avaliacao> avaliacoes = avaliacaoRepository.findByProfissional_Id(profissional.getId());
+		avaliacoes.sort((a1, a2) -> -a1.getId().compareTo(a2.getId()));
 		for(Avaliacao avaliacao : avaliacoes) {
 			String imageAutor = arquivoService.getImage(Paths.get(dirImages, avaliacao.getAutor().getNomeFoto()), "png");
 			avaliacao.setFotoAutorBase64(imageAutor);
