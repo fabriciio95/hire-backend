@@ -35,6 +35,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> HandleUsuarioJaCadastrado(UsuarioJaCadastradoException ex, WebRequest request) {
 		var status = HttpStatus.NOT_FOUND;
 		var problema = criarProblema(status.value(), ex.getMessage());
+		ex.printStackTrace();
 		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 	}
 	
@@ -42,6 +43,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> HandleNoSuchElement(NoSuchElementException ex, WebRequest request) {
 		var status = HttpStatus.NOT_FOUND;
 		var problema = criarProblema(status.value(), "Elemento não encontrado");
+		ex.printStackTrace();
 		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request); 
 	}
 	
@@ -49,6 +51,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> HandleException(ArquivoException ex, WebRequest request) {
 		var status = HttpStatus.INTERNAL_SERVER_ERROR;
 		var problema = criarProblema(status.value(), ex.getMessage());
+		ex.printStackTrace();
 		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 	}
 	
@@ -56,6 +59,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> HandleNotBlankException(NotBlankException ex, WebRequest request) {
 		var status = HttpStatus.BAD_REQUEST;
 		var problema = criarProblema(status.value(), ex.getMessage());
+		ex.printStackTrace();
 		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 	}
 	
@@ -63,6 +67,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	public ResponseEntity<Object> AvaliacaoException(AvaliacaoException ex, WebRequest request) {
 		var status = HttpStatus.BAD_REQUEST;
 		var problema = criarProblema(status.value(), ex.getMessage());
+		ex.printStackTrace();
 		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
 	}
 	
@@ -80,6 +85,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		}
 		Problema problema = criarProblema(status.value(), "Um ou mais campos inválidos. Faça o preenchimento correto e tente novamente!");
 		problema.setCampos(campos);
+		ex.printStackTrace();
 		return super.handleExceptionInternal(ex, problema, headers, status, request);
 	}
 	

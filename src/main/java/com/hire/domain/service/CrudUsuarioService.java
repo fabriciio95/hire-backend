@@ -10,6 +10,7 @@ import com.hire.domain.exception.ArquivoException;
 import com.hire.domain.exception.UsuarioJaCadastradoException;
 import com.hire.domain.model.Profissional;
 import com.hire.domain.model.Usuario;
+import com.hire.domain.repository.AvaliacaoRepository;
 import com.hire.domain.repository.ProfissionalRepository;
 import com.hire.domain.repository.UsuarioRepository;
 import com.hire.domain.utils.UsuarioUtils;
@@ -25,6 +26,9 @@ public class CrudUsuarioService {
 	
 	@Autowired
 	private ArquivoService arquivoService;
+	
+	@Autowired
+	private AvaliacaoRepository avaliacaoRepository;
 	
 	@Transactional(rollbackFor = Exception.class)
 	public UsuarioProfissionalApi salvar(UsuarioProfissionalApi usuarioApi) {
@@ -83,6 +87,7 @@ public class CrudUsuarioService {
 			
 			profissional = profissionalRepository.save(profissional);
 		} else if(usuarioApi.getEuQuero().equals(EuQuero.CONTRATAR) && profissionalRepository.existsById(usuario.getId())) {
+			avaliacaoRepository.deleteByProfissional_Id(usuario.getId());
 			profissionalRepository.deleteById(usuario.getId());
 		}
 		

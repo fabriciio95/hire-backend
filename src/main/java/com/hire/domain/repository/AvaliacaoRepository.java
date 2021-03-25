@@ -11,4 +11,6 @@ import com.hire.domain.model.Avaliacao;
 public interface AvaliacaoRepository extends JpaRepository<Avaliacao, Long> {
 
 	List<Avaliacao> findByProfissional_Id(Long idProfissional);
+	
+	void deleteByProfissional_Id(Long idProfissional);
 }

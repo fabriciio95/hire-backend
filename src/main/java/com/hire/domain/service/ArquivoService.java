@@ -47,6 +47,7 @@ public class ArquivoService {
 			ImageIO.write(resizedImage, formato, baos);
 			miniatura = String.format("data:image/%s;base64,%s", formato, DatatypeConverter.printBase64Binary(baos.toByteArray()));
 		} catch(Exception e) { 
+			e.printStackTrace();
 			throw new ArquivoException(e.getMessage());
 		}
 		return miniatura;
@@ -63,6 +64,7 @@ public class ArquivoService {
 			file = Files.readAllBytes(path);
 		    fileBase64 = new String(Base64.encodeBase64(file), "UTF-8");
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new ArquivoException(e.getMessage());
 		}
 		return String.format("data:image/%s;base64,%s", formato, fileBase64);
@@ -77,6 +79,7 @@ public class ArquivoService {
 			.size(240, 240)
 			.toFile(new File(String.format("%s//%s", dirImages, usuario.montarNomeFotoMiniatura())));
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new ArquivoException(e.getMessage());
 		}
 		usuarioRepository.save(usuario);
