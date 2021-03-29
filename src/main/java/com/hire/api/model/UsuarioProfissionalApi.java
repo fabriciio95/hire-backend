@@ -39,29 +39,29 @@ public class UsuarioProfissionalApi {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank(message = "Usu·rio n„o pode estar em branco.")
-	@Size(max = 10, message = "Usu·rio pode ter no m·ximo 10 caracteres.")
+	@NotBlank(message = "Usu√°rio n√£o pode estar em branco.")
+	@Size(max = 10, message = "Usu√°rio pode ter no m√°ximo 10 caracteres.")
 	private String usuario;
 	private String senha;
-	@NotBlank(message = "Nome n„o pode estar em branco.")
-	@Size(max = 25, message = "Nome sÛ pode ter atÈ 25 caracteres.")
+	@NotBlank(message = "Nome n√£o pode estar em branco.")
+	@Size(max = 35, message = "Nome s√≥ pode ter at√© 35 caracteres.")
 	private String nome;
 	
-	@NotBlank(message = "EndereÁo n„o pode estar em branco.")
-	@Size(max = 45, message = "EndereÁo n„o pode ter mais do que 45 caracteres.")
+	@NotBlank(message = "Endere√ßo n√£o pode estar em branco.")
+	@Size(max = 45, message = "Endere√ßo n√£o pode ter mais do que 45 caracteres.")
 	private String endereco;
-	@NotBlank(message = "E-mail n„o pode estar em branco.")
-	@Size(message = "E-mail n„o pode ter mais do que 30 caracteres.", max = 30)
+	@NotBlank(message = "E-mail n√£o pode estar em branco.")
+	@Size(message = "E-mail n√£o pode ter mais do que 30 caracteres.", max = 30)
 	@Email
 	private String email;
-	@NotBlank(message = "DescriÁ„o n„o pode estar em branco.")
-	@Size(max = 55, message = "DescriÁ„o pode ter no m·ximo 55 caracteres.")
+	@NotBlank(message = "Descri√ß√£o n√£o pode estar em branco.")
+	@Size(max = 55, message = "Descri√ß√£o pode ter no m√°ximo 55 caracteres.")
 	private String descricao;
-	@NotBlank(message = "Valor por hora n„o pode estar em branco.")
-	@Size(max = 15, message = "Valor por hora sÛ pode ter no m·ximo 15 caracteres.")
+	@NotBlank(message = "Valor por hora n√£o pode estar em branco.")
+	@Size(max = 15, message = "Valor por hora s√≥ pode ter no m√°ximo 15 caracteres.")
 	private String valorHora;
-	@NotBlank(message = "Telefone n„o pode estar em branco.")
-	@Size(max = 15, message = "Telefone pode ter no m·ximo 15 caracteres.")
+	@NotBlank(message = "Telefone n√£o pode estar em branco.")
+	@Size(max = 15, message = "Telefone pode ter no m√°ximo 15 caracteres.")
 	private String telefone;
 	private EuQuero euQuero;
 	private String fotoBase64;

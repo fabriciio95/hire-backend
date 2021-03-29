@@ -50,7 +50,7 @@ public class ProfissionalController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public UsuarioProfissionalApi adicionarProfissional(@RequestBody @Valid UsuarioProfissionalApi usuarioApi) {
 		if(usuarioApi.getSenha() == null || usuarioApi.getSenha().isBlank()) {
-			throw new NotBlankException("A senha n„o pode estar em branco.");
+			throw new NotBlankException("A senha n√£o pode estar em branco.");
 		}
 		UsuarioProfissionalApi usuario = crudUsuarioService.salvar(usuarioApi);
 		usuario.setSenha(null);

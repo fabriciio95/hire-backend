@@ -47,7 +47,7 @@ public class AvaliacaoController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public AvaliacaoApi publicarAvaliacao(@RequestBody @Valid AvaliacaoApi avaliacaoApi){
 		if(avaliacaoApi.getIdAutor().equals(avaliacaoApi.getIdProfissional())) {
-			throw new AvaliacaoException("Você não pode fazer uma avaliação de si mesmo.");
+			throw new AvaliacaoException("VocÃª nÃ£o pode fazer uma avaliaÃ§Ã£o de si mesmo.");
 		}
 		Avaliacao avaliacao = new Avaliacao();
 		avaliacao.setId(avaliacaoApi.getId());

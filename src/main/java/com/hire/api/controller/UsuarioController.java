@@ -35,7 +35,7 @@ public class UsuarioController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public Usuario adicionarUsuario(@RequestBody @Valid Usuario usuario) {
 		if(usuario.getSenha() == null || usuario.getSenha().isBlank()) {
-			throw new NotBlankException("A senha n„o pode estar em branco.");
+			throw new NotBlankException("A senha n√£o pode estar em branco.");
 		}
 		UsuarioProfissionalApi usuarioApi = UsuarioUtils.fromUsuarioForUsuarioProfissionalApi(usuario);
 		usuarioApi.setEuQuero(EuQuero.CONTRATAR);

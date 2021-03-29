@@ -24,8 +24,8 @@ public class Avaliacao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
 	private Long id;
-	@NotBlank(message = "Coment·rio n„o pode estar em branco.")
-	@Size(max = 140, message = "Coment·rio sÛ pode ter no m·ximo 140 caracteres.")
+	@NotBlank(message = "Coment√°rio n√£o pode estar em branco.")
+	@Size(max = 140, message = "Coment√°rio s√≥ pode ter no m√°ximo 140 caracteres.")
 	private String comentario;
 	@ManyToOne
 	@JoinColumn

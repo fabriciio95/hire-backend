@@ -42,7 +42,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	@ExceptionHandler(NoSuchElementException.class)
 	public ResponseEntity<Object> HandleNoSuchElement(NoSuchElementException ex, WebRequest request) {
 		var status = HttpStatus.NOT_FOUND;
-		var problema = criarProblema(status.value(), "Elemento n„o encontrado");
+		var problema = criarProblema(status.value(), "Elemento n√£o encontrado");
 		ex.printStackTrace();
 		return super.handleExceptionInternal(ex, problema, new HttpHeaders(), status, request); 
 	}
@@ -83,7 +83,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 			String mensagem = messageSource.getMessage(error, LocaleContextHolder.getLocale());
 			campos.add(new Campo(nome, mensagem));
 		}
-		Problema problema = criarProblema(status.value(), "Um ou mais campos inv·lidos. FaÁa o preenchimento correto e tente novamente!");
+		Problema problema = criarProblema(status.value(), "Um ou mais campos inv√°lidos. Fa√ßa o preenchimento correto e tente novamente!");
 		problema.setCampos(campos);
 		ex.printStackTrace();
 		return super.handleExceptionInternal(ex, problema, headers, status, request);

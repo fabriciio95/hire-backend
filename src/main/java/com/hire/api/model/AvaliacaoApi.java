@@ -16,8 +16,8 @@ import lombok.Setter;
 public class AvaliacaoApi {
 
 	private Long id;
-	@NotBlank(message = "Coment·rio n„o pode estar em branco.")
-	@Size(max = 140, message = "Coment·rio pode ter no m·ximo 140 caracteres.")
+	@NotBlank(message = "Coment√°rio n√£o pode estar em branco.")
+	@Size(max = 140, message = "Coment√°rio pode ter no m√°ximo 140 caracteres.")
 	private String comentario;
 	@NotNull
 	private Long idAutor;

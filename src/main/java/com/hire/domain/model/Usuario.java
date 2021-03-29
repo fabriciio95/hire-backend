@@ -29,13 +29,13 @@ public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank(message = "Usu·rio n„o pode estar em branco.")
-	@Size(max = 10, message = "Usu·rio pode ter no m·ximo 10 caracteres.")
+	@NotBlank(message = "Usu√°rio n√£o pode estar em branco.")
+	@Size(max = 10, message = "Usu√°rio pode ter no m√°ximo 10 caracteres.")
 	@Column(unique = true)
 	private String usuario;
 	private String senha;
-	@NotBlank(message = "Nome n„o pode estar em branco.")
-	@Size(max = 25, message = "Nome sÛ pode ter atÈ 25 caracteres.")
+	@NotBlank(message = "Nome n√£o pode estar em branco.")
+	@Size(max = 25, message = "Nome s√≥ pode ter at√© 25 caracteres.")
 	private String nome;
 	private String nomeFoto;
 	private transient String fotoBase64;

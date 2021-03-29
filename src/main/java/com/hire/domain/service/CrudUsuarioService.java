@@ -33,16 +33,16 @@ public class CrudUsuarioService {
 	@Transactional(rollbackFor = Exception.class)
 	public UsuarioProfissionalApi salvar(UsuarioProfissionalApi usuarioApi) {
 		if(usuarioApi.getId() == null && usuarioApi.getFotoBase64().isBlank()) {
-			throw new ArquivoException("… obrigatÛrio armazenar uma foto para identificaÁ„o");
+			throw new ArquivoException("√â obrigat√°rio armazenar uma foto para identifica√ß√£o");
 		}
 		
 		Usuario usuarioExistente = usuarioRepository.findByUsuario(usuarioApi.getUsuario());
 		if(usuarioExistente != null && !usuarioExistente.getId().equals(usuarioApi.getId())) {
-			throw new UsuarioJaCadastradoException("Usu·rio j· cadastrado");
+			throw new UsuarioJaCadastradoException("Usu√°rio j√° cadastrado");
 		}
 		Profissional profissionalExistente = profissionalRepository.findByEmail(usuarioApi.getEmail());
 		if(profissionalExistente != null && !profissionalExistente.getId().equals(usuarioApi.getId())) {
-			throw new UsuarioJaCadastradoException("E-mail j· cadastrado");
+			throw new UsuarioJaCadastradoException("E-mail j√° cadastrado");
 		}
 		
 		boolean isEnconderPassword = true;
