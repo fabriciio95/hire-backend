@@ -57,8 +57,8 @@ public class InsertTestData {
 		Profissional profissional = new Profissional();
 		profissional.setId(usuario.getId());
 		profissional.setUsuario(usuario);
-		profissional.setDescricao("Consertos gerais em casas!");
-		profissional.setEmail("fabricio@gmail.com");
+		profissional.setDescricao("Desenvolvedor back-end | Java | Spring");
+		profissional.setEmail("fabriciousiqueira@gmail.com");
 		profissional.setEndereco("Rua Areado, 234 - Carapicuiba");
 		profissional.setTelefone("(11) 98432-8331");
 		profissional.setValorHora("50/h");
