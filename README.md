@@ -227,7 +227,7 @@ Para obter os dados e avaliações de um profissional, você deve fazer uma requ
 ## Publicando uma avaliação de um profissional
 Para publicar uma avaliação de um profissional, você deve fazer uma requisição utilizando o método **POST** do protocolo HTTP com a URL:
 ```url
-http://localhost:8080/avaliacao/publicar
+http://localhost:8080/avaliacao
 ``` 
 Você também **obrigatoriamente** deverá enviar na requisição um cabeçalho **Authorization** com o token JWT obtido após o processo de login.
 
