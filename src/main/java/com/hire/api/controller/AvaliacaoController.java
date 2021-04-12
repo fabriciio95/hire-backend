@@ -43,7 +43,7 @@ public class AvaliacaoController {
 	private ArquivoService arquivoService;
 	
 	
-	@PostMapping("/publicar")
+	@PostMapping
 	@ResponseStatus(code = HttpStatus.CREATED)
 	public AvaliacaoApi publicarAvaliacao(@RequestBody @Valid AvaliacaoApi avaliacaoApi){
 		if(avaliacaoApi.getIdAutor().equals(avaliacaoApi.getIdProfissional())) {

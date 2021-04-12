@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter implements W
 					.antMatchers("/profissional/perfil/*").authenticated()
 					.antMatchers("/profissional/*").authenticated()
 					.antMatchers("/usuario/*").authenticated()
-					.antMatchers("/avaliacao/**").authenticated()
+					.antMatchers("/avaliacao").authenticated()
 					.antMatchers("/usuario-profissional/**").authenticated()
 					.anyRequest().permitAll()
 			.and()
