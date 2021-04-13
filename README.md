@@ -6,7 +6,7 @@
 http://apphire.herokuapp.com/
 
 
-Hire é um sistema construído para fins de **aprendizado** que visa gerar oportunidades a trabalhadores autônomos, expondo seu perfil para que clientes possam visualizar, entrar em contato e dar sua avaliação dos serviços prestados.
+Hire back-end é uma API REST construída para fins de **aprendizado** que visa gerar oportunidades a trabalhadores autônomos, expondo seu perfil para que clientes possam visualizar, entrar em contato e dar sua avaliação dos serviços prestados.
 
 ## Modelo Lógico
 ![Logico](https://github.com/fabriciio95/hire-front-end/blob/master/public/img/modelo-logico-hire.jpg)
