@@ -33,7 +33,7 @@ Hire back-end é uma API REST construída para fins de **aprendizado** que visa 
 - Banco de dados: Postgresql
 
 # Como executar o projeto
-Pré-requisitos: Java 11, Gradle
+Pré-requisitos: Java 11, Gradle 6.8.3
 
 ```bash
 # clonar repositório
