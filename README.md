@@ -47,7 +47,7 @@ gradle bootRun
 ```
 
 # Manual das requisições da API
-Pré-requesitos: Postman
+Pré-requisitos: Postman
 
 ## Buscando profissionais pela descrição
 Para realizar uma busca por um profissional pela sua descrição no banco de dados, você deve fazer uma requisição utilizando o método **GET** do protocolo HTTP passando um texto para ser buscado pela URL:
