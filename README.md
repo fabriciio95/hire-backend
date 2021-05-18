@@ -262,7 +262,7 @@ http://localhost:8080
 ```url
   https://tohireapp.herokuapp.com
 ```
-**Lembrando que caso o servidor não esteja ativo no Heroku as primeiras requisições podem não funcionar, então apenas faça uma requisição e aguarde alguns instantes para o servidor seja inicializado no Heroku.**
+**Lembrando que caso o servidor não esteja ativo no Heroku as primeiras requisições podem não funcionar, então apenas faça uma requisição e aguarde alguns instantes para que o servidor seja inicializado no Heroku.**
 
 # Autor
 
